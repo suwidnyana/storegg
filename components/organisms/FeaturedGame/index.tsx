@@ -1,16 +1,19 @@
 import GameItem from '@components/molecules/GameItem';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useCallback, useEffect, useState } from 'react';
+import { getFeaturedGame } from 'services/player';
 
 export default function FeaturedGame() {
   const [gameList, setGameList] = useState([]);
-  useEffect(async () => {
-    const response = await axios.get(
-      'https://web-production-8783.up.railway.app/api/v1/players/landingpage'
-    );
-    console.log('data', response.data);
-    setGameList(response.data.data);
+
+  const getFeatureGameList = useCallback(async () => {
+    const data = await getFeaturedGame();
+    setGameList(data);
+  }, [getFeaturedGame]);
+
+  useEffect(() => {
+    getFeatureGameList();
   }, []);
+
   return (
     <section className="featured-game pt-50 pb-50">
       <div className="container-fluid">
