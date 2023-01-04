@@ -1,5 +1,5 @@
 /* eslint-disable quotes */
-import Link from "next/link";
+import Link from 'next/link';
 
 interface AuthProps {
   isLogin?: boolean;
@@ -18,13 +18,15 @@ export default function Auth(props: Partial<AuthProps>) {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <img
-            src="/img/avatar-1.png"
-            className="rounded-circle"
-            width="40"
-            height="40"
-            alt=""
-          />
+          <Link href="/">
+            <img
+              src="/img/avatar-1.png"
+              className="rounded-circle"
+              width="40"
+              height="40"
+              alt=""
+            />
+          </Link>
         </a>
 
         <ul
