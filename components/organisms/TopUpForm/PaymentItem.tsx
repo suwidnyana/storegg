@@ -1,4 +1,3 @@
-import React from 'react';
 interface PaymentItemProps {
   bankID: string;
   type: string;

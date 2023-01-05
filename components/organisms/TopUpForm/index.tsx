@@ -2,13 +2,14 @@ import React from 'react';
 import NominalItem from './NominalItem';
 import PaymentItem from './PaymentItem';
 
-export default function TopUpForm() {
+export default function TopUpForm(props) {
+  const { nominals, payments } = props;
   return (
     <form action="./checkout.html" method="POST">
       <div className="pt-md-50 pt-30">
         <div className="">
           <label
-            for="ID"
+            htmlFor="ID"
             className="form-label text-lg fw-medium color-palette-1 mb-10"
           >
             Verify ID
@@ -28,25 +29,19 @@ export default function TopUpForm() {
           Nominal Top Up
         </p>
         <div className="row justify-content-between">
-          <NominalItem
-            _id="1234"
-            coinQuantity={20}
-            coinName="GOLD"
-            price={2000000}
-          />
-          <NominalItem
-            _id="1235"
-            coinQuantity={20}
-            coinName="GOLD"
-            price={2000000}
-          />
-          <NominalItem
-            _id="1236"
-            coinQuantity={20}
-            coinName="GOLD"
-            price={2000000}
-          />
-          <div className="col-lg-4 col-sm-6"></div>
+          {nominals.map((nominal) => {
+            return (
+              <NominalItem
+                key={nominal._id}
+                _id={nominal._id}
+                coinQuantity={nominal.coinQuantity}
+                coinName={nominal.coinName}
+                price={nominal.price}
+              />
+            );
+          })}
+
+          <div className="col-lg-4 col-sm-6" />
         </div>
       </div>
       <div className="pb-md-50 pb-20">
@@ -55,15 +50,23 @@ export default function TopUpForm() {
         </p>
         <fieldset id="paymentMethod">
           <div className="row justify-content-between">
-            <PaymentItem bankID="1234" type="Transfer" name="BCA" />
-            <PaymentItem bankID="123123" type="Transfer" name="Mandiri" />
+            {payments.map((payment) =>
+              payment.banks.map((bank) => (
+                <PaymentItem
+                  key={bank._id}
+                  bankID={bank._id}
+                  type={payment.type}
+                  name={bank.bankName}
+                />
+              ))
+            )}
             <div className="col-lg-4 col-sm-6" />
           </div>
         </fieldset>
       </div>
       <div className="pb-50">
         <label
-          for="bankAccount"
+          htmlFor="bankAccount"
           className="form-label text-lg fw-medium color-palette-1 mb-10"
         >
           Bank Account Name
