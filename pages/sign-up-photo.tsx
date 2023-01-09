@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { getGameCategory } from 'services/player';
+import { CategoryTypes } from '../services/data-types';
 
 export default function SignUpPhoto() {
   const [categories, setCategory] = useState([]);
@@ -29,7 +30,7 @@ export default function SignUpPhoto() {
             <div>
               <div className="mb-20">
                 <div className="image-upload text-center">
-                  <label for="avatar">
+                  <label htmlFor="avatar">
                     <Image
                       src="/icon/upload.svg"
                       width={120}
@@ -53,7 +54,7 @@ export default function SignUpPhoto() {
               </p>
               <div className="pt-50 pb-50">
                 <label
-                  for="category"
+                  htmlFor="category"
                   className="form-label text-lg fw-medium color-palette-1 mb-10"
                 >
                   Favorite Game
@@ -66,7 +67,7 @@ export default function SignUpPhoto() {
                   value={favorite}
                   onChange={(event) => setFavorite(event.target.value)}
                 >
-                  {categories.map((category) => {
+                  {categories.map((category: CategoryTypes) => {
                     return (
                       <option key={category._id} value={category._id} selected>
                         {category.name}
