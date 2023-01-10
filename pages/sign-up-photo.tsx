@@ -9,7 +9,10 @@ export default function SignUpPhoto() {
   const [favorite, setFavorite] = useState('');
   const [image, setImage] = useState('');
   const [imagePreview, setImagePreview] = useState(null);
-  const [localForm, setLocalForm] = useState({});
+  const [localForm, setLocalForm] = useState({
+    name: '',
+    email: '',
+  });
 
   const getGameCategoryAPI = useCallback(async () => {
     const data = await getGameCategory();
@@ -22,13 +25,16 @@ export default function SignUpPhoto() {
     getGameCategoryAPI();
   }, []);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const getLocalForm = localStorage.getItem('user-form');
+    setLocalForm(JSON.parse(getLocalForm));
+  }, []);
 
   const onSubmit = async () => {
     console.log('favorite', favorite);
     console.log('image: ', image);
-    const localForm = await localStorage.getItem('user-form');
-    const form = JSON.parse(localForm);
+    const getLocalForm = await localStorage.getItem('user-form');
+    const form = JSON.parse(getLocalForm);
 
     const data = new FormData();
     data.append('image', image);
@@ -82,10 +88,10 @@ export default function SignUpPhoto() {
                 </div>
               </div>
               <h2 className="fw-bold text-xl text-center color-palette-1 m-0">
-                Shayna Anne
+                {localForm.name}
               </h2>
               <p className="text-lg text-center color-palette-1 m-0">
-                shayna@anne.com
+                {localForm.email}
               </p>
               <div className="pt-50 pb-50">
                 <label
