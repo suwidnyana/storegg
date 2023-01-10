@@ -1,11 +1,15 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
+import { setSignUp } from 'services/auth';
 import { getGameCategory } from 'services/player';
 import { CategoryTypes } from '../services/data-types';
 
 export default function SignUpPhoto() {
   const [categories, setCategory] = useState([]);
   const [favorite, setFavorite] = useState('');
+  const [image, setImage] = useState('');
+  const [imagePreview, setImagePreview] = useState(null);
+  const [localForm, setLocalForm] = useState({});
 
   const getGameCategoryAPI = useCallback(async () => {
     const data = await getGameCategory();
@@ -18,8 +22,25 @@ export default function SignUpPhoto() {
     getGameCategoryAPI();
   }, []);
 
-  const onSubmit = () => {
+  useEffect(() => {}, []);
+
+  const onSubmit = async () => {
     console.log('favorite', favorite);
+    console.log('image: ', image);
+    const localForm = await localStorage.getItem('user-form');
+    const form = JSON.parse(localForm);
+
+    const data = new FormData();
+    data.append('image', image);
+    data.append('email', form.email);
+    data.append('name', form.name);
+    data.append('password', form.password);
+    data.append('username', form.username);
+    data.append('phoneNumber', '3211312321');
+    data.append('status', 'Y');
+    data.append('favorite', favorite);
+    const result = await setSignUp(data);
+    console.log('result', result);
   };
 
   return (
@@ -31,18 +52,32 @@ export default function SignUpPhoto() {
               <div className="mb-20">
                 <div className="image-upload text-center">
                   <label htmlFor="avatar">
-                    <Image
-                      src="/icon/upload.svg"
-                      width={120}
-                      height={120}
-                      alt="upload"
-                    />
+                    {imagePreview ? (
+                      <img
+                        src={imagePreview}
+                        alt="upload"
+                        className="img-upload"
+                      />
+                    ) : (
+                      <Image
+                        src="/icon/upload.svg"
+                        width={120}
+                        height={120}
+                        alt="upload"
+                      />
+                    )}
                   </label>
                   <input
                     id="avatar"
                     type="file"
                     name="avatar"
                     accept="image/png, image/jpeg"
+                    onChange={(event) => {
+                      console.log(event.target.files);
+                      const img = event.target.files[0];
+                      setImagePreview(URL.createObjectURL(img));
+                      return setImage(img);
+                    }}
                   />
                 </div>
               </div>
