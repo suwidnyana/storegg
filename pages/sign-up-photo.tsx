@@ -2,9 +2,15 @@ import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { setSignUp } from 'services/auth';
 import { getGameCategory } from 'services/player';
+
+import { ToastContainer, toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 import { CategoryTypes } from '../services/data-types';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function SignUpPhoto() {
+  const router = useRouter();
   const [categories, setCategory] = useState([]);
   const [favorite, setFavorite] = useState('');
   const [image, setImage] = useState('');
@@ -46,6 +52,13 @@ export default function SignUpPhoto() {
     data.append('status', 'Y');
     data.append('favorite', favorite);
     const result = await setSignUp(data);
+    if (result.error === 1) {
+      toast.error(result.message);
+    } else {
+      toast.success('Register Berhasil');
+      router.push('/sign-up-success');
+      localStorage.removeItem('user-form');
+    }
     console.log('result', result);
   };
 
@@ -139,6 +152,7 @@ export default function SignUpPhoto() {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </section>
   );
 }
