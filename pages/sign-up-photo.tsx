@@ -52,7 +52,8 @@ export default function SignUpPhoto() {
     data.append('status', 'Y');
     data.append('favorite', favorite);
     const result = await setSignUp(data);
-    if (result.error === 1) {
+    console.log(result);
+    if (result.error) {
       toast.error(result.message);
     } else {
       toast.success('Register Berhasil');

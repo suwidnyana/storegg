@@ -12,7 +12,7 @@ export async function setSignUp(data: FormData) {
 
   const axiosResponse = response.data;
 
-  if (axiosResponse?.err === 1) {
+  if (axiosResponse?.error === 1) {
     return axiosResponse;
   }
   return axiosResponse.data;
