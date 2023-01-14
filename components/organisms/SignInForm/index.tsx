@@ -28,7 +28,6 @@ export default function SignInForm() {
         router.push('/');
       }
     }
-    console.log('data :', data);
   };
 
   return (
