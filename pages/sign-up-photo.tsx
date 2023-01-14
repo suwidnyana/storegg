@@ -22,7 +22,6 @@ export default function SignUpPhoto() {
 
   const getGameCategoryAPI = useCallback(async () => {
     const data = await getGameCategory();
-    console.log('data :', data);
     setCategory(data);
     setFavorite(data[0]._id);
   }, [getGameCategory]);
@@ -33,14 +32,12 @@ export default function SignUpPhoto() {
 
   useEffect(() => {
     const getLocalForm = localStorage.getItem('user-form');
-    setLocalForm(JSON.parse(getLocalForm));
+    setLocalForm(JSON.parse(getLocalForm!));
   }, []);
 
   const onSubmit = async () => {
-    console.log('favorite', favorite);
-    console.log('image: ', image);
     const getLocalForm = await localStorage.getItem('user-form');
-    const form = JSON.parse(getLocalForm);
+    const form = JSON.parse(getLocalForm!);
 
     const data = new FormData();
     data.append('image', image);
@@ -52,7 +49,7 @@ export default function SignUpPhoto() {
     data.append('status', 'Y');
     data.append('favorite', favorite);
     const result = await setSignUp(data);
-    console.log(result);
+
     if (result.error) {
       toast.error(result.message);
     } else {
@@ -60,7 +57,6 @@ export default function SignUpPhoto() {
       router.push('/sign-up-success');
       localStorage.removeItem('user-form');
     }
-    console.log('result', result);
   };
 
   return (
@@ -93,7 +89,6 @@ export default function SignUpPhoto() {
                     name="avatar"
                     accept="image/png, image/jpeg"
                     onChange={(event) => {
-                      console.log(event.target.files);
                       const img = event.target.files[0];
                       setImagePreview(URL.createObjectURL(img));
                       return setImage(img);
