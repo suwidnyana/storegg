@@ -6,8 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { setLogin } from 'services/auth';
-
 import jwt_decode from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 export default function SignInForm() {
   const router = useRouter();
@@ -28,9 +28,8 @@ export default function SignInForm() {
       } else {
         toast.success('Login Berhasil');
         const { token } = response.data;
-        console.log('token:', token);
-        const user = jwt_decode(token);
-        console.log('user:', user);
+        const tokenBase64 = btoa(token);
+        Cookies.set('token', tokenBase64, { expires: 1 });
         // router.push('/');
       }
     }
