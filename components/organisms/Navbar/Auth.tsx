@@ -1,11 +1,26 @@
 /* eslint-disable quotes */
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import jwt_decode from 'jwt-decode';
 
-interface AuthProps {
-  isLogin?: boolean;
-}
-export default function Auth(props: Partial<AuthProps>) {
-  const { isLogin } = props;
+export default function Auth() {
+  const [isLogin, setIsLogin] = useState(false);
+  const [isUser, setUser] = useState({
+    avatar: '',
+  });
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (token) {
+      const jwtToken = atob(token);
+      const payload = jwt_decode(jwtToken);
+      const user = payload.player;
+      const IMG = process.env.NEXT_PUBLIC_IMG;
+      user.avatar = `${IMG}/${user.avatar}`;
+      setIsLogin(true);
+      setUser(user);
+    }
+  }, []);
   if (isLogin) {
     <li className="nav-item my-auto dropdown d-flex">
       <div className="vertical-line d-lg-block d-none" />
@@ -18,15 +33,13 @@ export default function Auth(props: Partial<AuthProps>) {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <Link href="/">
-            <img
-              src="/img/avatar-1.png"
-              className="rounded-circle"
-              width="40"
-              height="40"
-              alt=""
-            />
-          </Link>
+          <img
+            src={isUser.avatar}
+            className="rounded-circle"
+            width="40"
+            height="40"
+            alt=""
+          />
         </a>
 
         <ul
