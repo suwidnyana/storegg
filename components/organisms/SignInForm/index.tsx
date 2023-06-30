@@ -10,11 +10,14 @@ import jwt_decode from 'jwt-decode';
 import Cookies from 'js-cookie';
 
 export default function SignInForm() {
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
 
   const onSubmit = async () => {
+    setLoading(true);
     const data = {
       email,
       password,
@@ -30,9 +33,10 @@ export default function SignInForm() {
         const { token } = response.data;
         const tokenBase64 = btoa(token);
         Cookies.set('token', tokenBase64, { expires: 1 });
-        // router.push('/');
+        router.push('/');
       }
     }
+    setLoading(false);
   };
 
   return (
@@ -72,18 +76,30 @@ export default function SignInForm() {
         />
       </div>
       <div className="button-group d-flex flex-column mx-auto pt-50">
-        <button
-          type="button"
-          className="btn btn-sign-in fw-medium text-lg text-white rounded-pill mb-16"
-          onClick={onSubmit}
-        >
-          Continue to Sign In
-        </button>
-        <Link href="/sign-up">
-          <a
-            className="btn btn-sign-up fw-medium text-lg color-palette-1 rounded-pill"
-            role="button"
+        {loading ? (
+          <button
+            type="button"
+            className="btn btn-sign-in fw-medium text-lg text-white rounded-pill mb-16"
+            disabled
           >
+            <span
+              className="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            />{' '}
+            Loading...
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="btn btn-sign-in fw-medium text-lg text-white rounded-pill mb-16"
+            onClick={onSubmit}
+          >
+            Continue to Sign In
+          </button>
+        )}
+        <Link href="/sign-up">
+          <a className="btn btn-sign-up fw-medium text-lg color-palette-1 rounded-pill">
             Sign Up
           </a>
         </Link>
