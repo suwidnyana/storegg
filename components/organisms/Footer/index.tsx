@@ -1,4 +1,5 @@
 import React from 'react';
+import Script from 'next/script';
 
 export default function Footer() {
   return (
@@ -17,6 +18,7 @@ export default function Footer() {
                 >
                   <mask
                     id="mask0"
+                    // eslint-disable-next-line react/no-unknown-property
                     mask-type="alpha"
                     maskUnits="userSpaceOnUse"
                     x="0"

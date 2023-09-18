@@ -5,7 +5,7 @@ const nextConfig = {
 
 module.exports = {
   images: {
-    domains: ['sangw.in', 'localhost', 'picsum.photos'], // <== Domain name
+    domains: ['store-gg-server-production.up.railway.app', 'localhost'], // <== Domain name
   },
   nextConfig,
 };
