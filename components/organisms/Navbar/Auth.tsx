@@ -7,6 +7,7 @@ import { JWTPayloadTypes, UserTypes } from '../../../services/data-types';
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(false);
+
   const [user, setUser] = useState({
     avatar: '',
   });
@@ -18,6 +19,7 @@ export default function Auth() {
       const jwtToken = atob(token);
       const payload: JWTPayloadTypes = jwtDecode(jwtToken);
       const userFromPayload: UserTypes = payload.player;
+
       // user Bisa Diganti Dengan userFromPayload
       const IMG = process.env.NEXT_PUBLIC_IMG;
       user.avatar = `${IMG}/${userFromPayload.avatar}`;
@@ -39,9 +41,9 @@ export default function Auth() {
         <div>
           <a
             className="dropdown-toggle ms-lg-40"
-            href="/#"
+            href="#"
             role="button"
-            id="dropdownMenuLink"
+            id="id"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
@@ -50,31 +52,30 @@ export default function Auth() {
               className="rounded-circle"
               width="40"
               height="40"
-              alt=""
+              alt="img"
             />
           </a>
 
-          <ul
-            className="dropdown-menu border-0"
-            aria-labelledby="dropdownMenuLink"
-          >
+          <ul className="dropdown-menu border-0" aria-labelledby="id">
             <li>
-              <Link href="/member">
-                <a className="dropdown-item text-lg color-palette-2">
-                  My Profile
-                </a>
+              <Link
+                href="/member"
+                className="dropdown-item text-lg color-palette-2"
+              >
+                My Profile
               </Link>
             </li>
             <li>
-              <Link href="/#">
-                <a className="dropdown-item text-lg color-palette-2">Wallet</a>
+              <Link href="/#" className="dropdown-item text-lg color-palette-2">
+                Wallet
               </Link>
             </li>
             <li>
-              <Link href="/member/edit-profile">
-                <a className="dropdown-item text-lg color-palette-2">
-                  Account Settings
-                </a>
+              <Link
+                href="/member/edit-profile"
+                className="dropdown-item text-lg color-palette-2"
+              >
+                Account Settings
               </Link>
             </li>
             <li>
@@ -93,13 +94,12 @@ export default function Auth() {
   }
   return (
     <li className="nav-item my-auto">
-      <Link href="/sign-in">
-        <a
-          className="btn btn-sign-in d-flex justify-content-center ms-lg-2 rounded-pill"
-          role="button"
-        >
-          Sign In
-        </a>
+      <Link
+        href="/sign-in"
+        className="btn btn-sign-in d-flex justify-content-center ms-lg-2 rounded-pill"
+        role="button"
+      >
+        Sign In
       </Link>
     </li>
   );

@@ -23,21 +23,21 @@ export default function MainBanner() {
               sejati
             </p>
             <div className="d-flex flex-lg-row flex-column gap-4">
-              <Link href="#feature">
-                <a
-                  className="btn btn-get text-lg text-white rounded-pill"
-                  role="button"
-                >
+              <Link
+                href="#feature"
+                className="btn btn-get text-lg text-white rounded-pill"
+                role="button">
+                
                   Get Started
-                </a>
+                
               </Link>
-              <Link href="/href">
-                <a
-                  className="btn-learn text-lg color-palette-1 my-auto text-center"
-                  role="button"
-                >
+              <Link
+                href="/href"
+                className="btn-learn text-lg color-palette-1 my-auto text-center"
+                role="button">
+                
                   Learn More
-                </a>
+                
               </Link>
             </div>
           </div>

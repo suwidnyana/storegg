@@ -10,15 +10,15 @@ export default function SignIn() {
           <form action="">
             <div className="container mx-auto">
               <div className="pb-50">
-                <Link href="/">
-                  <a className="navbar-brand">
-                    <Image
-                      src="/icon/logo.svg"
-                      width={60}
-                      height={60}
-                      alt="logo"
-                    />
-                  </a>
+                <Link href="/" className="navbar-brand">
+
+                  <Image
+                    src="/icon/logo.svg"
+                    width={60}
+                    height={60}
+                    alt="logo"
+                  />
+
                 </Link>
               </div>
               <SignInForm />
