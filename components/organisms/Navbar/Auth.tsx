@@ -21,10 +21,10 @@ export default function Auth() {
       const userFromPayload: UserTypes = payload.player;
 
       // user Bisa Diganti Dengan userFromPayload
-      const IMG = process.env.NEXT_PUBLIC_IMG;
-      user.avatar = `${IMG}/${userFromPayload.avatar}`;
+      // const IMG = process.env.NEXT_PUBLIC_IMG;
+      // user.avatar = `${IMG}/${userFromPayload.avatar}`;
       setIsLogin(true);
-      setUser(user);
+      setUser(userFromPayload);
     }
   }, []);
 
@@ -48,7 +48,8 @@ export default function Auth() {
             aria-expanded="false"
           >
             <img
-              src={user.avatar}
+              // src={user.avatar}
+              src={`https://source.unsplash.com/random/40x40/?${user.avatar}`}
               className="rounded-circle"
               width="40"
               height="40"
