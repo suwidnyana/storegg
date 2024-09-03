@@ -2,8 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Introduction
 
-This Project is learn from BuildWithAngga Course
-Branch Ini masih static belum integrasi dengan API
+This Project is learn from BuildWithAngga Course.
+Branch Ini masih static belum integrasi dengan API.
 
 ## Getting Started
 
