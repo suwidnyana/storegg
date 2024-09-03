@@ -4,14 +4,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 This Project is learn from BuildWithAngga Course
 
+Branch ini sudah terintegrasi dengan API
+
 ## Getting Started
 
-First, run the development server:
-
-```bash
-npm run dev
-# atau
-yarn dev
-```
-
+-Pastikan API berjalan dengan benar
 
