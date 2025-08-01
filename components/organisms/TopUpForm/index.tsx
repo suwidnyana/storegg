@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 import { BanksTypes, NominalsTypes, PaymentTypes } from 'services/data-types';
 import NominalItem from './NominalItem';
 import PaymentItem from './PaymentItem';
-import { useRouter } from 'next/router';
 
 interface TopUpFormProps {
   nominals: NominalsTypes[];
@@ -31,16 +32,13 @@ export default function TopUpForm(props: TopUpFormProps) {
   };
 
   const onsubmit = () => {
-    console.log('verifyID', verifyID);
-    console.log('bankAccountName', bankAccountName);
     if (
       verifyID === '' ||
       bankAccountName === '' ||
       Object.keys(nominalItem).length === 0 ||
       Object.keys(paymentItem).length === 0
     ) {
-      alert('Please fill in all fields');
-      return;
+      toast.error('Please fill in all fields');
     } else {
       const data = {
         verifyID,
@@ -51,8 +49,6 @@ export default function TopUpForm(props: TopUpFormProps) {
       localStorage.setItem('topup-item', JSON.stringify(data));
       router.push('/checkout');
     }
-    //localStorage.setItem('nominal-item', JSON.stringify(data));
-    //localStorage.setItem('payment-item', JSON.stringify({ payment, bank }));
   };
   return (
     <form action="./checkout.html" method="POST">

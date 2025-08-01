@@ -19,6 +19,8 @@ import '../styles/navbar-log-in.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -55,6 +57,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" />
       <Component {...pageProps} />;
+      <ToastContainer />
     </>
   );
 }
