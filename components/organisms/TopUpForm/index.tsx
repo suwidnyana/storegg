@@ -46,7 +46,7 @@ export default function TopUpForm(props: TopUpFormProps) {
         nominalItem,
         paymentItem,
       };
-      localStorage.setItem('topup-item', JSON.stringify(data));
+      localStorage.setItem('data-topup', JSON.stringify(data));
       router.push('/checkout');
     }
   };
