@@ -1,12 +1,13 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import NumberFormat from 'react-number-format';
+import { NumericFormat } from 'react-number-format';
+
 import cx from 'classnames';
 
 interface TableRowProps {
   title: string;
-  categori: string;
+  category: string;
   item: string | number;
   price: number;
   status: 'Pending' | 'Success' | 'Failed';
@@ -14,13 +15,14 @@ interface TableRowProps {
 }
 
 export default function TableRow(props: TableRowProps) {
-  const { title, categori, item, price, status, image } = props;
+  const { title, category, item, price, status, image } = props;
   const statusClass = cx({
     'float-start icon-status': true,
     pending: status === 'Pending',
     success: status === 'Success',
     failed: status === 'Failed',
   });
+
   return (
     <tr className="align-middle">
       <th scope="row">
@@ -36,7 +38,7 @@ export default function TableRow(props: TableRowProps) {
             {title}
           </p>
           <p className="text-xs fw-normal text-start color-palette-2 m-0">
-            {categori}
+            {category}
           </p>
         </div>
       </th>
@@ -45,7 +47,7 @@ export default function TableRow(props: TableRowProps) {
       </td>
       <td>
         <p className="fw-medium text-start color-palette-1 m-0">
-          <NumberFormat
+          <NumericFormat
             value={price}
             prefix="Rp. "
             displayType="text"

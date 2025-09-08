@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import { setCheckout } from 'services/player';
+import { useRouter } from 'next/router';
 
 export default function CheckOutConfirmation() {
+  const router = useRouter();
   const [checkbox, setCheckbox] = useState(false);
-  const onSubmit = () => {
+
+  const onSubmit = async () => {
     const dataItemLocal = localStorage.getItem('data-item');
     const dataTopUpLocal = localStorage.getItem('data-topup');
 
@@ -22,7 +26,16 @@ export default function CheckOutConfirmation() {
       name: dataTopUp.bankAccountName,
       accountUser: dataTopUp.verifyID,
     };
+
     console.log('Data to submit:', data);
+    const response = await setCheckout(data);
+
+    if (response.error) {
+      toast.error(response.message);
+    } else {
+      toast.success('Checkout Berhasil');
+      router.push('/complete-checkout');
+    }
   };
   return (
     <>

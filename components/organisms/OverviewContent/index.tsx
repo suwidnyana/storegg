@@ -51,7 +51,7 @@ export default function OverviewContent() {
                 <TableRow
                   image="overview-1"
                   title="Mobile Legend"
-                  categori="Mobile"
+                  category="Mobile"
                   item={200}
                   price={29000}
                   status="Pending"
@@ -59,7 +59,7 @@ export default function OverviewContent() {
                 <TableRow
                   image="overview-2"
                   title="Call of Duty:Modern"
-                  categori="Desktop"
+                  category="Desktop"
                   item={200}
                   price={29000}
                   status="Pending"
@@ -67,7 +67,7 @@ export default function OverviewContent() {
                 <TableRow
                   image="overview-3"
                   title="Clash Of Clans"
-                  categori="Mobile"
+                  category="Mobile"
                   item={200}
                   price={29000}
                   status="Pending"
@@ -75,7 +75,7 @@ export default function OverviewContent() {
                 <TableRow
                   image="overview-4"
                   title="Valorant"
-                  categori="Mobile"
+                  category="Mobile"
                   item={200}
                   price={29000}
                   status="Success"

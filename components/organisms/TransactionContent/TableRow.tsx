@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import cx from 'classnames';
-import NumberFormat from 'react-number-format';
+import { NumericFormat } from 'react-number-format';
 
 interface TableRowProps {
   image: string;
@@ -46,7 +46,7 @@ export default function TableRow(props: TableRowProps) {
       </td>
       <td>
         <p className="fw-medium color-palette-1 m-0">
-          <NumberFormat
+          <NumericFormat
             value={price}
             prefix="Rp. "
             displayType="text"
@@ -66,7 +66,8 @@ export default function TableRow(props: TableRowProps) {
       <td>
         <Link
           href={`/member/transactions/${id}`}
-          className="btn btn-status rounded-pill text-sm">
+          className="btn btn-status rounded-pill text-sm"
+        >
           Details
         </Link>
       </td>
