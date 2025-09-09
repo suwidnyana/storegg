@@ -12,7 +12,7 @@ interface TopUpFormProps {
 
 export default function TopUpForm(props: TopUpFormProps) {
   const router = useRouter();
-  const [verifyID, setVerifyId] = useState('');
+  const [verifyId, setVerifyId] = useState('');
   const [bankAccountName, setBankAccountName] = useState('');
   const [nominalItem, setNominalItem] = useState({});
   const [paymentItem, setPaymentItem] = useState({});
@@ -33,7 +33,7 @@ export default function TopUpForm(props: TopUpFormProps) {
 
   const onsubmit = () => {
     if (
-      verifyID === '' ||
+      verifyId === '' ||
       bankAccountName === '' ||
       Object.keys(nominalItem).length === 0 ||
       Object.keys(paymentItem).length === 0
@@ -41,7 +41,7 @@ export default function TopUpForm(props: TopUpFormProps) {
       toast.error('Please fill in all fields');
     } else {
       const data = {
-        verifyID,
+        verifyId,
         bankAccountName,
         nominalItem,
         paymentItem,
@@ -67,7 +67,7 @@ export default function TopUpForm(props: TopUpFormProps) {
             name="ID"
             aria-describedby="verifyID"
             placeholder="Enter your ID"
-            value={verifyID}
+            value={verifyId}
             onChange={(event) => setVerifyId(event.target.value)}
           />
         </div>

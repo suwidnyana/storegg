@@ -33,5 +33,6 @@ export async function setCheckout(data: CheckoutTypes) {
     url,
     method: 'POST',
     data,
+    token: true,
   });
 }

@@ -24,7 +24,7 @@ export default function CheckOutConfirmation() {
       payment: dataTopUp.paymentItem.payment._id,
       bank: dataTopUp.paymentItem.bank._id,
       name: dataTopUp.bankAccountName,
-      accountUser: dataTopUp.verifyID,
+      accountUser: dataTopUp.verifyId,
     };
 
     console.log('Data to submit:', data);
