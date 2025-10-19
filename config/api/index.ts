@@ -46,7 +46,7 @@ export default async function callAPI({
     return {
       error: false,
       message: 'success',
-      data: response.data.data,
+      data: response.data.count ? response.data : response.data.data,
     };
   } catch (err) {
     const errorResponse = (err as any).response;

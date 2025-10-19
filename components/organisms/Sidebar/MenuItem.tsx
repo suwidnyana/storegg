@@ -30,7 +30,7 @@ export default function MenuItem(props: Partial<MenuItemProps>) {
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div className={classItem}>
       <div className="me-3">
-        <Image src={`/icon/${icon}.svg`} width={25} height={25} />
+        <Image src={`/icon/${icon}.svg`} width={25} height={25} alt="" />
       </div>
       <p className="item-title m-0">
         {onClick ? (
